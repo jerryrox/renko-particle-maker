@@ -113,3 +113,5 @@ renko.registerAwake(this, function() {
 - Fix texts overflowing outside the bounds.
 - Support scrolling on the left-side panel.
 - Catch other possible exceptions.
+- Show alert messages wherever necessary
+- Improve code line spacing
