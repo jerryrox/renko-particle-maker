@@ -475,6 +475,11 @@ class ShapeMenuInfo {
 
         var codeInfo = new CodeInfo();
         codeInfo.addModifier(new ModifierCodeInfo("shapeMod"));
+        codeInfo.addController(new ControllerCodeInfo(`
+this.setOffset = function(x, y) {
+    this.shapeMod.setOffset(x, y);
+}
+        `));
         codeInfo.addBuilder(new BuilderCodeInfo(`
     this.shapeMod = new ParticleShape(this.particle);
     this.particle.addModifier(this.shapeMod);
@@ -1006,9 +1011,9 @@ class GravityMenuInfo {
         var codeInfo = new CodeInfo();
         codeInfo.addModifier(new ModifierCodeInfo("gravityMod"));
         codeInfo.addController(new ControllerCodeInfo(`
-    this.setGravity = function(gravity) {
-        this.gravityMod.setGravity(gravity);
-    }
+this.setGravity = function(gravity) {
+    this.gravityMod.setGravity(gravity);
+}
         `));
         codeInfo.addBuilder(new BuilderCodeInfo(`
     this.gravityMod = new ParticleGravity(this.particle);
@@ -1156,8 +1161,8 @@ class MovementMenuInfo {
         codeInfo.addModifier(new ModifierCodeInfo("movementMod"));
         codeInfo.addBuilder(new BuilderCodeInfo(`
     this.movementMod = new ParticleMovement(this.particle);
-    this.particle.addModifier(this.movementMod);
-        `));
+    this.particle.addModifier(this.movementMod);`
+        ));
         if(movement.modeParams[0] === 0) {
             codeInfo.addBuilder(new BuilderCodeInfo(`
     this.movementMod.setMoveRange(${movement.modeParams[1]}, ${movement.modeParams[2]}, ${movement.modeParams[3]}, ${movement.modeParams[4]});
@@ -1224,7 +1229,7 @@ class AccelerationMenuInfo {
         codeInfo.addController(new ControllerCodeInfo(`
 this.setAcceleration = function(acceleration) {
     this.accelerationMod.setAccelScale(acceleration);
-});
+}
         `));
         codeInfo.addBuilder(new BuilderCodeInfo(`
     this.accelerationMod = new ParticleAcceleration(this.particle);
@@ -1300,7 +1305,7 @@ class RotationMenuInfo {
         codeInfo.addController(new ControllerCodeInfo(`
 this.setRotateSpeed = function(min, max) {
     this.rotationMod.setRotateSpeed(min, max);
-};
+}
         `));
         codeInfo.addBuilder(new BuilderCodeInfo(`
     this.rotationMod = new ParticleRotation(this.particle);

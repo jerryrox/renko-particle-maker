@@ -475,6 +475,11 @@ class ShapeMenuInfo {
 
         var codeInfo = new CodeInfo();
         codeInfo.addModifier(new ModifierCodeInfo("shapeMod"));
+        codeInfo.addController(new ControllerCodeInfo(`
+this.setOffset = function(x, y) {
+    this.shapeMod.setOffset(x, y);
+}
+        `));
         codeInfo.addBuilder(new BuilderCodeInfo(`
     this.shapeMod = new ParticleShape(this.particle);
     this.particle.addModifier(this.shapeMod);
@@ -1006,9 +1011,9 @@ class GravityMenuInfo {
         var codeInfo = new CodeInfo();
         codeInfo.addModifier(new ModifierCodeInfo("gravityMod"));
         codeInfo.addController(new ControllerCodeInfo(`
-    this.setGravity = function(gravity) {
-        this.gravityMod.setGravity(gravity);
-    }
+this.setGravity = function(gravity) {
+    this.gravityMod.setGravity(gravity);
+}
         `));
         codeInfo.addBuilder(new BuilderCodeInfo(`
     this.gravityMod = new ParticleGravity(this.particle);
